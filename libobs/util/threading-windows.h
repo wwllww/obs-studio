@@ -59,17 +59,7 @@ static inline long os_atomic_exchange_long(volatile long *ptr, long val)
 
 static inline long os_atomic_load_long(const volatile long *ptr)
 {
-#if defined(_M_ARM64)
-	return __ldar32((volatile unsigned *)ptr);
-#else
-	const long val = __iso_volatile_load32((const volatile __int32 *)ptr);
-#if defined(_M_ARM)
-	__dmb(_ARM_BARRIER_ISH);
-#else
-	_ReadWriteBarrier();
-#endif
-	return val;
-#endif
+	return (long)_InterlockedOr((volatile long *)ptr, 0);
 }
 
 static inline bool os_atomic_compare_swap_long(volatile long *val, long old_val,
@@ -103,13 +93,7 @@ static inline void os_atomic_store_bool(volatile bool *ptr, bool val)
 
 static inline bool os_atomic_set_bool(volatile bool *ptr, bool val)
 {
-	const char c = _InterlockedExchange8((volatile char *)ptr, (char)val);
-	bool b;
-
-	/* Avoid unnecesary char to bool conversion. Value known 0 or 1. */
-	memcpy(&b, &c, sizeof(b));
-
-	return b;
+	return !!_InterlockedExchange8((volatile char *)ptr, (char)val);
 }
 
 static inline bool os_atomic_exchange_bool(volatile bool *ptr, bool val)
@@ -119,21 +103,5 @@ static inline bool os_atomic_exchange_bool(volatile bool *ptr, bool val)
 
 static inline bool os_atomic_load_bool(const volatile bool *ptr)
 {
-	bool b;
-
-#if defined(_M_ARM64)
-	const unsigned char c = __ldar8((volatile unsigned char *)ptr);
-#else
-	const char c = __iso_volatile_load8((const volatile char *)ptr);
-#if defined(_M_ARM)
-	__dmb(_ARM_BARRIER_ISH);
-#else
-	_ReadWriteBarrier();
-#endif
-#endif
-
-	/* Avoid unnecesary char to bool conversion. Value known 0 or 1. */
-	memcpy(&b, &c, sizeof(b));
-
-	return b;
+	return !!_InterlockedOr8((volatile char *)ptr, 0);
 }

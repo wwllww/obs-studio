@@ -250,6 +250,7 @@ private:
 	QString lastService;
 	int prevLangIndex;
 	bool prevBrowserAccel;
+	inline bool IsWebrtcService() const;
 private slots:
 	void UpdateServerList();
 	void UpdateKeyLink();

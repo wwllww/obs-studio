@@ -57,6 +57,7 @@ struct obs_x264 {
 	size_t sei_size;
 
 	os_performance_token_t *performance_token;
+	bool request_key_frame;
 };
 
 /* ------------------------------------------------------------------------- */
@@ -762,8 +763,13 @@ static bool obs_x264_encode(void *data, struct encoder_frame *frame,
 	if (!frame || !packet || !received_packet)
 		return false;
 
-	if (frame)
+	if (frame) {
 		init_pic_data(obsx264, &pic, frame);
+		if (obsx264->request_key_frame) {
+			pic.b_keyframe = true;
+			obsx264->request_key_frame = false;
+		}
+	}
 
 	ret = x264_encoder_encode(obsx264->context, &nals, &nal_count,
 				  (frame ? &pic : NULL), &pic_out);
@@ -823,6 +829,13 @@ static void obs_x264_video_info(void *data, struct video_scale_info *info)
 	info->format = pref_format;
 }
 
+static void obs_x264_video_set_request_key_frame(void *data, bool request)
+{
+	struct obs_x264 *obsx264 = data;
+	obsx264->request_key_frame = request;
+}
+
+
 struct obs_encoder_info obs_x264_encoder = {
 	.id = "obs_x264",
 	.type = OBS_ENCODER_VIDEO,
@@ -838,4 +851,5 @@ struct obs_encoder_info obs_x264_encoder = {
 	.get_sei_data = obs_x264_sei,
 	.get_video_info = obs_x264_video_info,
 	.caps = OBS_ENCODER_CAP_DYN_BITRATE,
+	.set_request_key_frame = obs_x264_video_set_request_key_frame,
 };
