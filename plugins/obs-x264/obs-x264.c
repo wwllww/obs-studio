@@ -766,7 +766,7 @@ static bool obs_x264_encode(void *data, struct encoder_frame *frame,
 	if (frame) {
 		init_pic_data(obsx264, &pic, frame);
 		if (obsx264->request_key_frame) {
-			pic.b_keyframe = true;
+			pic.i_type = X264_TYPE_IDR;
 			obsx264->request_key_frame = false;
 		}
 	}

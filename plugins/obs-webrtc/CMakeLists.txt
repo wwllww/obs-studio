@@ -17,6 +17,12 @@ if(MSVC)
 		ssleay32)
 	add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+else()
+	set(obs-webrtc_PLATFORM_DEPS
+		${obs-webrtc_PLATFORM_DEPS}
+		libsrtp2
+		libcrypto
+		libssl)
 endif()
 
 set(obs-webrtc_HEADERS
