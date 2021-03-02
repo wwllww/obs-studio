@@ -1,4 +1,4 @@
-OBS Studio with webrtc stream
+OBS Studio with webrtc custom
 
 Build steps:
 Windows: (x64 Relase for example) 
