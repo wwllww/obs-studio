@@ -2,7 +2,7 @@ OBS Studio with webrtc custom
 
 Build steps:
 
--Windows: (x64 Relase for example) 
+- Windows: (x64 Relase for example) 
 
 1. down load the dependencies2017 https://obsproject.com/downloads/dependencies2017.zip
 
@@ -19,7 +19,7 @@ Build steps:
 	add QTDIR   /Qt/Qt5.13.1/5.13.1/msvc2017_64
 
 
--MacOS:
+- MacOS:
 
 1. mkdir /tmp/obsdeps/include/webrtc-core and copy webrtc_core_interface.h to it.
 
