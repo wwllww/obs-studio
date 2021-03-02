@@ -2,11 +2,10 @@ project(obs-webrtc)
 #find_package(webrtc-core REQUIRED)
 
 set(obs-webrtc_PLATFORM_DEPS
-		libcurl
 		webrtc-core)
-include_directories(${LIBWEBRTC_CORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/deps/libcaption)
-link_directories(${DepsPath}/bin)
+include_directories(${DepsPath}/include ${CMAKE_SOURCE_DIR}/deps/libcaption)
 if(MSVC)
+        link_directories(${DepsPath}/bin)
 	set(obs-webrtc_PLATFORM_DEPS
 		${obs-webrtc_PLATFORM_DEPS}
 		w32-pthreads
@@ -14,15 +13,18 @@ if(MSVC)
 		Iphlpapi
 		srtp2
 		libeay32
-		ssleay32)
+		ssleay32
+                libcurl)
 	add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 else()
+        link_directories(${DepsPath}/lib)
 	set(obs-webrtc_PLATFORM_DEPS
 		${obs-webrtc_PLATFORM_DEPS}
-		libsrtp2
-		libcrypto
-		libssl)
+                curl
+		srtp2
+		crypto
+		ssl)
 endif()
 
 set(obs-webrtc_HEADERS

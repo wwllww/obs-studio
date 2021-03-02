@@ -261,8 +261,8 @@ struct obs_output_info webrtc_core_info = {
 };
 
 #else
-struct obs_output_info rtmp_output_info = {
-	.id = "webrtc_core",
+struct obs_output_info webrtc_core_info = {
+	.id = "webrtc_core_output",
 	.flags = OBS_OUTPUT_AV | OBS_OUTPUT_ENCODED | OBS_OUTPUT_SERVICE,
 	.encoded_video_codecs = "h264",
 	.encoded_audio_codecs = "opus",
@@ -276,6 +276,6 @@ struct obs_output_info rtmp_output_info = {
 	.get_properties = webrtc_stream_properties,
 	.get_total_bytes = webrtc_stream_total_bytes_sent,
 	.get_congestion = webrtc_stream_congestion,
-
+};
 #endif
 }

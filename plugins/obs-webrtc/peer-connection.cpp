@@ -6,6 +6,8 @@
 #else
 #include <arpa/inet.h>
 #include <sys/time.h>
+#pragma  GCC diagnostic ignored  "-Wunused"
+#pragma  GCC diagnostic ignored  "-Wunused-parameter"
 #endif
 
 #ifdef _WIN32
