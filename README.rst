@@ -2,6 +2,8 @@ OBS Studio with webrtc custom
 
 Build steps:
 
+git clone --recursive https://github.com/wwllww/obs-studio.git
+
 - Windows: (x64 Relase for example) 
 
 1. down load the dependencies2017 https://obsproject.com/downloads/dependencies2017.zip
