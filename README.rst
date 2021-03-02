@@ -6,17 +6,17 @@ Windows: (x64 Relase for example)
 
 1. down load the dependencies2017 https://obsproject.com/downloads/dependencies2017.zip
 
-2. mkdir webrtc-core in dependencies2017/win64/include/ and copy webrtc_core_interface.h in it.
+2. mkdir webrtc-core in /dependencies2017/win64/include/ and copy webrtc_core_interface.h in it.
 
-3. mkdir Release in dependencies2017/win64/bin and copy webrtc-core.lib in it.
+3. mkdir Release in /dependencies2017/win64/bin and copy webrtc-core.lib in it.
 
-4. copy srtp2.lib ssleay32.lib libeay32.lib to dependencies2017/win64/bin
+4. copy srtp2.lib ssleay32.lib libeay32.lib to /dependencies2017/win64/bin
 
 5. cmake-gui
 
-add DepsPath dependencies2017/win64
+add DepsPath /dependencies2017/win64
 
-add QTDIR   Qt/Qt5.13.1/5.13.1/msvc2017_64
+add QTDIR   /Qt/Qt5.13.1/5.13.1/msvc2017_64
 
 
 MacOS:
