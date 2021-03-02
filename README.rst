@@ -23,6 +23,6 @@ Build steps:
 
 1. mkdir /tmp/obsdeps/include/webrtc-core and copy webrtc_core_interface.h to it.
 
-2. mkidr /tmp/obsdeps/lib/ and copy libwebrtc-core.a libsrtp2.a libssl.a libcrypto.a to it.
+2. mkidr /tmp/obsdeps/lib and copy libwebrtc-core.a libsrtp2.a libssl.a libcrypto.a to it.
 
 3. https://github.com/obsproject/obs-deps
