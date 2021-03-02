@@ -12,11 +12,11 @@ Windows: (x64 Relase for example)
 
 4. copy srtp2.lib ssleay32.lib libeay32.lib to /dependencies2017/win64/bin
 
-5. cmake-gui
+5. run cmake-gui
 
-add DepsPath /dependencies2017/win64
+	add DepsPath /dependencies2017/win64
 
-add QTDIR   /Qt/Qt5.13.1/5.13.1/msvc2017_64
+	add QTDIR   /Qt/Qt5.13.1/5.13.1/msvc2017_64
 
 
 MacOS:
