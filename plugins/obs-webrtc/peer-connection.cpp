@@ -281,6 +281,7 @@ void peer_connection::SetPC(webrtccore::PeerConnectionInterface *pc)
 void peer_connection::OnTime()
 {
 	uint64_t time_ms = GetTimestampMs();
+	MutexLock lock(&mutex_);
 	if (peer_connection_) {
 		peer_connection_->OnTime(time_ms);
 	}
@@ -406,12 +407,12 @@ void peer_connection::AddSendBytes(obs_encoder_type type, int len)
 
 void peer_connection::reset()
 {
-	MutexLock lock(&mutex_);
 	if (m_pUdpProxy) {
 		m_pUdpProxy->Stop();
 		delete m_pUdpProxy;
 		m_pUdpProxy = nullptr;
 	}
+	MutexLock lock(&mutex_);
 	if (peer_connection_) {
 		delete peer_connection_;
 		peer_connection_ = nullptr;
