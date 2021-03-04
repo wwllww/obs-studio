@@ -359,6 +359,8 @@ void peer_connection::OnRecv(const char *pData, uint32_t uDataLen,
 	remote_addr.ip = inet_ntoa(addr.sin_addr);
 	remote_addr.addr_type = webrtccore::kAddrIpv4;
 	remote_addr.port = addr.sin_port;
+
+	MutexLock lock(&mutex_);
 	if (peer_connection_) {
 		peer_connection_->ProcessRemoteData(std::move(recv_pkg),
 						    remote_addr);
