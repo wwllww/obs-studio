@@ -99,8 +99,8 @@ void peer_connection::OnAddVideoTrack(
 
 void peer_connection::OnRemoveVideoTrack(uint32_t ssrc) {}
 
-void peer_connection::OnRecvMeidaData(
-	std::unique_ptr<webrtccore::MeidaData> media_data)
+void peer_connection::OnRecvMediaData(
+	std::unique_ptr<webrtccore::MediaData> media_data)
 {
 	log_debug("%s, OnRecvMeidaData media_type_: %d ,len: %d\r\n",
 		  __FUNCTION__, media_data->media_type_, media_data->len_);

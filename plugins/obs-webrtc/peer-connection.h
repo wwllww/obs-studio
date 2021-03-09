@@ -50,7 +50,7 @@ public:
 	};
 };
 
-class MediaFrame : public webrtccore::MeidaData {
+class MediaFrame : public webrtccore::MediaData {
 public:
 	MediaFrame(webrtccore::MediaType media_type, char *data, int32_t len,
 		   uint64_t timestamp, uint32_t ssrc, uint32_t payload_type,
@@ -98,7 +98,7 @@ protected:
 			     const std::map<uint32_t, webrtccore::VideoCodeInfo>
 				     &codec_info_map);
 	void OnRemoveVideoTrack(uint32_t ssrc);
-	void OnRecvMeidaData(std::unique_ptr<webrtccore::MeidaData> media_data);
+	void OnRecvMediaData(std::unique_ptr<webrtccore::MediaData> media_data);
 	void OnRecvChannelData(std::unique_ptr<webrtccore::Packet> data);
 	void OnSendDataToRemote(std::unique_ptr<webrtccore::Packet> data,
 				const webrtccore::NetAddr &addr);
