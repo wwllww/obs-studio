@@ -37,6 +37,10 @@
 #define warn(format, ...) do_log(LOG_WARNING, format, ##__VA_ARGS__)
 #define info(format, ...) do_log(LOG_INFO, format, ##__VA_ARGS__)
 #define debug(format, ...) do_log(LOG_DEBUG, format, ##__VA_ARGS__)
+#ifdef min
+#undef min
+#endif
+#define min(val, low) ((val) < (low) ? (val) : (low))
 //#define ENABLE_VFR
 
 /* ------------------------------------------------------------------------- */
