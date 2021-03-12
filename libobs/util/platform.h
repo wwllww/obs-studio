@@ -92,6 +92,7 @@ typedef struct os_cpu_usage_info os_cpu_usage_info_t;
 EXPORT os_cpu_usage_info_t *os_cpu_usage_info_start(void);
 EXPORT double os_cpu_usage_info_query(os_cpu_usage_info_t *info);
 EXPORT void os_cpu_usage_info_destroy(os_cpu_usage_info_t *info);
+EXPORT uint32_t os_cpu_get_core_num(os_cpu_usage_info_t *info);
 
 typedef const void os_performance_token_t;
 EXPORT os_performance_token_t *os_request_high_performance(const char *reason);

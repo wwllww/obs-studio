@@ -14,6 +14,14 @@ void set_request_key_frame(struct encoder_packet *packet)
 		packet->encoder->context.data, true);
 }
 
+void set_repeat_header(struct obs_output *output)
+{
+	if (output->video_encoder) {
+		obs_data_set_bool(output->video_encoder->context.settings,
+				  "repeat_headers", true);
+	}
+}
+
 static const char *webrtc_custom_name(void *unused)
 {
 	UNUSED_PARAMETER(unused);

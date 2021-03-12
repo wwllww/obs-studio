@@ -37,7 +37,6 @@
 #define warn(format, ...) do_log(LOG_WARNING, format, ##__VA_ARGS__)
 #define info(format, ...) do_log(LOG_INFO, format, ##__VA_ARGS__)
 #define debug(format, ...) do_log(LOG_DEBUG, format, ##__VA_ARGS__)
-
 //#define ENABLE_VFR
 
 /* ------------------------------------------------------------------------- */
@@ -464,6 +463,9 @@ static void update_params(struct obs_x264 *obsx264, obs_data_t *settings,
 	obsx264->params.pf_log = log_x264;
 	obsx264->params.p_log_private = obsx264;
 	obsx264->params.i_log_level = X264_LOG_WARNING;
+	os_cpu_usage_info_t* cpuinfo = os_cpu_usage_info_start();
+	obsx264->params.i_threads = min(os_cpu_get_core_num(cpuinfo), 4);
+	os_cpu_usage_info_destroy(cpuinfo);
 
 	if (obs_data_has_user_value(settings, "bf"))
 		obsx264->params.i_bframe = bf;
@@ -545,10 +547,12 @@ static void update_params(struct obs_x264 *obsx264, obs_data_t *settings,
 		     "\twidth:        %d\n"
 		     "\theight:       %d\n"
 		     "\tkeyint:       %d\n",
+		     "\tuseThread:    %d\n",
 		     rate_control, obsx264->params.rc.i_vbv_max_bitrate,
 		     obsx264->params.rc.i_vbv_buffer_size,
 		     (int)obsx264->params.rc.f_rf_constant, voi->fps_num,
-		     voi->fps_den, width, height, obsx264->params.i_keyint_max);
+		     voi->fps_den, width, height, obsx264->params.i_keyint_max,
+		     obsx264->params.i_threads);
 	}
 }
 

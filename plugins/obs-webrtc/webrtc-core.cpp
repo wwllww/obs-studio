@@ -2,6 +2,7 @@
 #include "peer-connection.h"
 
 extern "C" void set_request_key_frame(struct encoder_packet *packet);
+extern "C" void set_repeat_header(struct obs_output *output);
 
 void LogCallback(int level, const char *file, int line, const char *function,
 		 const char *fmt, va_list vl)
@@ -82,6 +83,7 @@ static bool webrtc_stream_start(void *data)
 	obs_output_t *output = webrtc_peer->GetObsOutput();
 	if (!obs_output_can_begin_data_capture(output, 0))
 		return false;
+	set_repeat_header(output);
 	if (!obs_output_initialize_encoders(output, 0))
 		return false;
 	obs_service_t *service = obs_output_get_service(output);

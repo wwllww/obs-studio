@@ -184,6 +184,12 @@ CPU Usage Functions
 
 ---------------------
 
+.. function:: uint32_t             os_cpu_get_core_num(os_cpu_usage_info_t *info)
+
+   Get CPU core number.
+
+---------------------
+
 
 Sleep/Time Functions
 --------------------

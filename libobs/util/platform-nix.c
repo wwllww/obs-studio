@@ -121,6 +121,11 @@ os_cpu_usage_info_t *os_cpu_usage_info_start(void)
 	return info;
 }
 
+uint32_t os_cpu_get_core_num(os_cpu_usage_info_t *info)
+{
+	return info->core_count;
+}
+
 double os_cpu_usage_info_query(os_cpu_usage_info_t *info)
 {
 	struct tms time_sample;
