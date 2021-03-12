@@ -324,7 +324,6 @@ bundle_dylibs() {
         ./OBS.app/Contents/PlugIns/rtmp-services.so
         ./OBS.app/Contents/MacOS/obs-ffmpeg-mux
         ./OBS.app/Contents/MacOS/obslua.so
-        ./OBS.app/Contents/MacOS/_obspython.so
         ./OBS.app/Contents/PlugIns/obs-x264.so
         ./OBS.app/Contents/PlugIns/text-freetype2.so
         ./OBS.app/Contents/PlugIns/obs-outputs.so
@@ -407,8 +406,6 @@ prepare_macos_bundle() {
     # Scripting plugins are required to be placed in same directory as binary
     if [ -d ./OBS.app/Contents/Resources/data/obs-scripting ]; then
         /bin/mv ./OBS.app/Contents/Resources/data/obs-scripting/obslua.so ./OBS.app/Contents/MacOS/
-        /bin/mv ./OBS.app/Contents/Resources/data/obs-scripting/_obspython.so ./OBS.app/Contents/MacOS/
-        /bin/mv ./OBS.app/Contents/Resources/data/obs-scripting/obspython.py ./OBS.app/Contents/MacOS/
         /bin/rm -rf ./OBS.app/Contents/Resources/data/obs-scripting/
     fi
 
