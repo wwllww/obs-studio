@@ -550,7 +550,7 @@ static void update_params(struct obs_x264 *obsx264, obs_data_t *settings,
 		     "\tfps_den:      %d\n"
 		     "\twidth:        %d\n"
 		     "\theight:       %d\n"
-		     "\tkeyint:       %d\n",
+		     "\tkeyint:       %d\n"
 		     "\tuseThread:    %d\n",
 		     rate_control, obsx264->params.rc.i_vbv_max_bitrate,
 		     obsx264->params.rc.i_vbv_buffer_size,
